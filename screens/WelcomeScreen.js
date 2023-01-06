@@ -1,4 +1,6 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, Linking, StyleSheet, Text, View } from "react-native";
+
+const REGISTER_LINK = "https://google.com";
 
 export default function WelcomeScreen({ navigation }) {
     return (
@@ -10,7 +12,7 @@ export default function WelcomeScreen({ navigation }) {
             />
             <Button
                 title='Register'
-                onPress={() => navigation.navigate("Register")}
+                onPress={() => Linking.openURL(REGISTER_LINK)}
             />
         </View>
     );
