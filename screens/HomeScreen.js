@@ -6,18 +6,15 @@ import Page from "../components/home/Page";
 import ProfilePage from "../components/home/ProfilePage";
 import SearchPage from "../components/home/SearchPage";
 import Navbar from "../components/Navbar";
+import { useAppData } from "../context/AppData";
 
-const BACKGROUND_COLOR = "#fff";
-
-const PAGES = {
-    HOME: "Home",
-    SEARCH: "Search",
-    INFO: "Info",
-    PROFILE: "Profile"
-};
+let backgroundColor;
 
 export default function HomeScreen({ navigation }) {
+    const appData = useAppData();
+    const { PAGES, BACKGROUND_COLOR } = appData;
     const [renderPage, setRenderPage] = useState(PAGES.HOME);
+    backgroundColor = BACKGROUND_COLOR;
 
     return (
         <View style={styles.container}>
@@ -32,7 +29,11 @@ export default function HomeScreen({ navigation }) {
                 <></>
             )}
             {renderPage === PAGES.INFO ? (
-                <Page title={PAGES.INFO} PageContent={InfoPage} />
+                <Page
+                    title={PAGES.INFO}
+                    PageContent={InfoPage}
+                    navigation={navigation}
+                />
             ) : (
                 <></>
             )}
@@ -42,7 +43,6 @@ export default function HomeScreen({ navigation }) {
                 <></>
             )}
             <Navbar
-                navigation={navigation}
                 PAGES={PAGES}
                 renderPage={renderPage}
                 setRenderPage={setRenderPage}
@@ -54,7 +54,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: BACKGROUND_COLOR,
+        backgroundColor: backgroundColor,
         alignItems: "center"
     }
 });

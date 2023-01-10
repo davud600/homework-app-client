@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Page({ title, PageContent }) {
+export default function Page({ title, PageContent, navigation = null }) {
     return (
         <View style={styles.contentContainer}>
             <Text style={styles.pageTitle}>{title}</Text>
-            <PageContent />
+            <PageContent navigation={navigation} />
         </View>
     );
 }
