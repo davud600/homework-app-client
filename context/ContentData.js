@@ -64,6 +64,58 @@ const contentData = {
             // imageSrc: require("../assets/adaptive-icon.png"),
             newsLink: "https://google.com"
         }
+    ],
+    CREDITS: ["credit1", "credit2"],
+    GLOSSARY_LIST: [
+        {
+            id: "1",
+            title: "Example text",
+            paragraph1: "text text text text text text",
+            image: "",
+            paragraph2: "text text text text text text"
+        },
+        {
+            id: "2",
+            title: "Example text",
+            paragraph1: "text text text text text text",
+            image: "",
+            paragraph2: "text text text text text text"
+        },
+        {
+            id: "3",
+            title: "Z Example text",
+            paragraph1: "text text text text text text",
+            image: "",
+            paragraph2: "text text text text text text"
+        },
+        {
+            id: "4",
+            title: "C Example text",
+            paragraph1: "text text text text text text",
+            image: "",
+            paragraph2: "text text text text text text"
+        },
+        {
+            id: "5",
+            title: "Example text",
+            paragraph1: "text text text text text text",
+            image: "",
+            paragraph2: "text text text text text text"
+        },
+        {
+            id: "6",
+            title: "A Example text",
+            paragraph1: "text text text text text text",
+            image: "",
+            paragraph2: "text text text text text text"
+        },
+        {
+            id: "7",
+            title: "B Example text",
+            paragraph1: "text text text text text text",
+            image: "",
+            paragraph2: "text text text text text text"
+        }
     ]
 };
 

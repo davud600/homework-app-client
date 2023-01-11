@@ -2,59 +2,52 @@ import React from "react";
 import { View, StyleSheet, Button } from "react-native";
 
 export default function Navbar({ PAGES, renderPage, setRenderPage }) {
+    const pagesGroupOne = [];
+    const pagesGroupTwo = [];
+    const keyArr = Object.keys(PAGES);
+
+    keyArr.forEach((key, index) => {
+        if (index >= keyArr.length / 2) return;
+        pagesGroupOne[index] = PAGES[key];
+    });
+    keyArr.reverse().forEach((key, index) => {
+        if (index >= keyArr.length / 2) return;
+        pagesGroupTwo[index] = PAGES[key];
+    });
+
     return (
         <View style={styles.navbarContainer}>
             <View style={styles.pagesGroup}>
-                <View
-                    style={[
-                        styles.navbarButtonContainer,
-                        renderPage === PAGES.HOME &&
-                            styles.navbarButtonContainerActive
-                    ]}>
-                    <Button
-                        color='black'
-                        title='Home'
-                        onPress={() => setRenderPage(PAGES.HOME)}
-                    />
-                </View>
-                <View
-                    style={[
-                        styles.navbarButtonContainer,
-                        renderPage === PAGES.SEARCH &&
-                            styles.navbarButtonContainerActive
-                    ]}>
-                    <Button
-                        color='black'
-                        title='Search'
-                        onPress={() => setRenderPage(PAGES.SEARCH)}
-                    />
-                </View>
+                {pagesGroupOne.map(page => (
+                    <View
+                        style={[
+                            styles.navbarButtonContainer,
+                            renderPage === page &&
+                                styles.navbarButtonContainerActive
+                        ]}>
+                        <Button
+                            color='black'
+                            title={page}
+                            onPress={() => setRenderPage(page)}
+                        />
+                    </View>
+                ))}
             </View>
             <View style={styles.pagesGroup}>
-                <View
-                    style={[
-                        styles.navbarButtonContainer,
-                        renderPage === PAGES.INFO &&
-                            styles.navbarButtonContainerActive
-                    ]}>
-                    <Button
-                        color='black'
-                        title='?'
-                        onPress={() => setRenderPage(PAGES.INFO)}
-                    />
-                </View>
-                <View
-                    style={[
-                        styles.navbarButtonContainer,
-                        renderPage === PAGES.PROFILE &&
-                            styles.navbarButtonContainerActive
-                    ]}>
-                    <Button
-                        color='black'
-                        title='Profile'
-                        onPress={() => setRenderPage(PAGES.PROFILE)}
-                    />
-                </View>
+                {pagesGroupTwo.map(page => (
+                    <View
+                        style={[
+                            styles.navbarButtonContainer,
+                            renderPage === page &&
+                                styles.navbarButtonContainerActive
+                        ]}>
+                        <Button
+                            color='black'
+                            title={page}
+                            onPress={() => setRenderPage(page)}
+                        />
+                    </View>
+                ))}
             </View>
         </View>
     );
