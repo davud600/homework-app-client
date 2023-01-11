@@ -13,7 +13,7 @@ export default function HomeScreen({ navigation }) {
     const appData = useAppData();
     const { PAGES } = appData;
     const [renderPage, setRenderPage] = useState(PAGES.HOME);
-    const ContentPages = [HomePage, InfoPage, ProfilePage, SearchPage];
+    const ContentPages = [HomePage, SearchPage, InfoPage, ProfilePage];
 
     return (
         <View style={styles.container}>
@@ -29,11 +29,7 @@ export default function HomeScreen({ navigation }) {
                 );
             })}
 
-            <Navbar
-                PAGES={PAGES}
-                renderPage={renderPage}
-                setRenderPage={setRenderPage}
-            />
+            <Navbar renderPage={renderPage} setRenderPage={setRenderPage} />
         </View>
     );
 }
