@@ -1,7 +1,9 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet, SafeAreaView, TextInput } from "react-native";
+import { useAppData } from "../context/AppData";
+import ScreenLayout from "./ScreenLayout";
 
-export default function SearchPage() {
+function SearchContent() {
     return (
         <>
             <SafeAreaView style={styles.searchFieldContainer}>
@@ -15,7 +17,23 @@ export default function SearchPage() {
     );
 }
 
+export default function SearchScreen() {
+    const { PAGES } = useAppData();
+
+    return (
+        <View style={styles.container}>
+            <ScreenLayout title={PAGES.SEARCH} ScreenContent={SearchContent} />
+        </View>
+    );
+}
+
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center"
+    },
+
     searchFieldContainer: {
         width: "100%",
         margin: 20

@@ -1,33 +1,35 @@
 import React from "react";
-import {
-    Button,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
-} from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
+import { useAppData } from "../context/AppData";
+import ScreenLayout from "./ScreenLayout";
 
-import glossaryIcon from "../../assets/info/icons/glossary-icon.png";
-import contactUsIcon from "../../assets/info/icons/contact-us-icon.png";
-import moreInfoIcon from "../../assets/info/icons/more-info-icon.png";
-import creditsIcon from "../../assets/info/icons/credits-icon.png";
+import glossaryIcon from "../assets/info/icons/glossary-icon.png";
+import contactUsIcon from "../assets/info/icons/contact-us-icon.png";
+import moreInfoIcon from "../assets/info/icons/more-info-icon.png";
+import creditsIcon from "../assets/info/icons/credits-icon.png";
 
-export default function InfoPage({ navigation }) {
+function InfoContent({ navigation }) {
+    const { INFO_PAGES } = useAppData();
+
+    // make this with a map loop
     return (
         <>
             <View style={styles.menuContainer}>
                 <View style={styles.menuRow}>
                     <View styles={styles.menuItem}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("Glossary")}>
+                            onPress={() =>
+                                navigation.navigate(INFO_PAGES.GLOSSARY)
+                            }>
                             <Image style={styles.icon} source={glossaryIcon} />
                             <Text style={styles.menuItemText}>Glossary</Text>
                         </TouchableOpacity>
                     </View>
                     <View styles={styles.menuItem}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("ContactUs")}>
+                            onPress={() =>
+                                navigation.navigate(INFO_PAGES.CONTACT_US)
+                            }>
                             <Image style={styles.icon} source={contactUsIcon} />
                             <Text style={styles.menuItemText}>Contact us</Text>
                         </TouchableOpacity>
@@ -36,14 +38,18 @@ export default function InfoPage({ navigation }) {
                 <View style={styles.menuRow}>
                     <View styles={styles.menuItem}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("MoreInfo")}>
+                            onPress={() =>
+                                navigation.navigate(INFO_PAGES.MORE_INFO)
+                            }>
                             <Image style={styles.icon} source={moreInfoIcon} />
                             <Text style={styles.menuItemText}>More info</Text>
                         </TouchableOpacity>
                     </View>
                     <View styles={styles.menuItem}>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("Credits")}>
+                            onPress={() =>
+                                navigation.navigate(INFO_PAGES.CREDITS)
+                            }>
                             <Image style={styles.icon} source={creditsIcon} />
                             <Text style={styles.menuItemText}>Credits</Text>
                         </TouchableOpacity>
@@ -54,7 +60,27 @@ export default function InfoPage({ navigation }) {
     );
 }
 
+export default function InfoScreen({ navigation }) {
+    const { PAGES } = useAppData();
+
+    return (
+        <View style={styles.container}>
+            <ScreenLayout
+                title={PAGES.INFO}
+                ScreenContent={InfoContent}
+                navigation={navigation}
+            />
+        </View>
+    );
+}
+
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center"
+    },
+
     menuContainer: {
         display: "flex",
         flexDirection: "column",

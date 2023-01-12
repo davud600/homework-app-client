@@ -116,6 +116,52 @@ const contentData = {
             image: "",
             paragraph2: "text text text text text text"
         }
+    ],
+    TASK_PARTS: [
+        {
+            title: "Part 1",
+            description: "Example description of part 1",
+            divisions: [
+                {
+                    title: "Division 1",
+                    description: "Example description for division 1 of part 1",
+                    tasks: [
+                        {
+                            title: "Task 1",
+                            description:
+                                "Example description of task 1 of division 1 of part 1"
+                        },
+                        {
+                            title: "Task 2",
+                            description:
+                                "Example description of task 2 of division 1 of part 1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            title: "Part 2",
+            description: "Example description of part 2",
+            divisions: [
+                {
+                    title: "Division 1",
+                    description: "Example description for division 1 of part 2",
+                    tasks: [
+                        {
+                            title: "Task 1",
+                            description:
+                                "Example description of task 1 of division 1 of part 2"
+                        },
+                        {
+                            title: "Task 2",
+                            description:
+                                "Example description of task 2 of division 1 of part 2"
+                        }
+                    ]
+                }
+            ]
+        }
     ]
 };
 
@@ -127,7 +173,7 @@ export function useContentData() {
 
 export default function ContentDataProvider({ children }) {
     const value = {
-        contentData
+        ...contentData
     };
 
     return (

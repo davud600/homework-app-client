@@ -1,35 +1,47 @@
-import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import React from "react";
+import { View, StyleSheet, Text } from "react-native";
+import { Bar } from "react-native-progress";
+import List from "../components/List";
 import { useAppData } from "../context/AppData";
-import Navbar from "../components/Navbar";
-import Page from "../components/Page";
+import { useContentData } from "../context/ContentData";
+import ScreenLayout from "./ScreenLayout";
 
-import HomePage from "../components/home/HomePage";
-import SearchPage from "../components/home/SearchPage";
-import InfoPage from "../components/home/InfoPage";
-import ProfilePage from "../components/home/ProfilePage";
+function HomeContent() {
+    const { NEWS_LIST_DATA, RESOURCES_LIST_DATA } = useContentData();
 
-export default function HomeScreen({ navigation }) {
-    const appData = useAppData();
-    const { PAGES } = appData;
-    const [renderPage, setRenderPage] = useState(PAGES.HOME);
-    const ContentPages = [HomePage, SearchPage, InfoPage, ProfilePage];
+    const totalProgress = 0.25;
+    const progressBarfillColor = "rgba(0, 0, 0, 0.5)";
+    const progressBarBorderColor = "black";
+    const progressBarBorderWidth = 2;
+    const progressBarHeight = 24;
+    const progressBarWidth = 270;
+    const progressBarBorderRadius = 0;
+
+    return (
+        <>
+            <View>
+                <Bar
+                    borderWidth={progressBarBorderWidth}
+                    borderRadius={progressBarBorderRadius}
+                    width={progressBarWidth}
+                    height={progressBarHeight}
+                    color={progressBarfillColor}
+                    borderColor={progressBarBorderColor}
+                    progress={totalProgress}
+                />
+            </View>
+            <List DATA={NEWS_LIST_DATA} title={"News"} />
+            <List DATA={RESOURCES_LIST_DATA} title={"Useful Resources"} />
+        </>
+    );
+}
+
+export default function HomeScreen() {
+    const { PAGES } = useAppData();
 
     return (
         <View style={styles.container}>
-            {Object.keys(PAGES).map((key, index) => {
-                return renderPage === PAGES[key] ? (
-                    <Page
-                        title={PAGES[key]}
-                        PageContent={ContentPages[index]}
-                        navigation={navigation}
-                    />
-                ) : (
-                    <></>
-                );
-            })}
-
-            <Navbar renderPage={renderPage} setRenderPage={setRenderPage} />
+            <ScreenLayout title={PAGES.HOME} ScreenContent={HomeContent} />
         </View>
     );
 }

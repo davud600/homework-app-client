@@ -7,13 +7,13 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
-import Page from "../components/Page";
-import { useContentData } from "../context/ContentData";
+import { useAppData } from "../../context/AppData";
+import { useContentData } from "../../context/ContentData";
+import InfoScreensLayout from "./InfoScreensLayout";
 
-function GlossaryPage() {
+function GlossaryContent() {
     const [highlightedText, setHighlightedText] = useState(-1);
-    const { contentData } = useContentData();
-    const { GLOSSARY_LIST } = contentData;
+    const { GLOSSARY_LIST } = useContentData();
     GLOSSARY_LIST.sort((a, b) => a.title.localeCompare(b.title));
 
     return (
@@ -47,10 +47,16 @@ function GlossaryPage() {
     );
 }
 
-export default function GlossaryScreen() {
+export default function GlossaryScreen({ navigation }) {
+    const { INFO_PAGES } = useAppData();
+
     return (
         <View style={styles.container}>
-            <Page title='Glossary' PageContent={GlossaryPage} />
+            <InfoScreensLayout
+                title={INFO_PAGES.GLOSSARY}
+                ScreenContent={GlossaryContent}
+                navigation={navigation}
+            />
         </View>
     );
 }

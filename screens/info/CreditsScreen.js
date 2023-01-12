@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
-import Page from "../components/Page";
-import { useContentData } from "../context/ContentData";
+import { useAppData } from "../../context/AppData";
+import { useContentData } from "../../context/ContentData";
+import InfoScreensLayout from "./InfoScreensLayout";
 
-function CreditsPage() {
-    const { contentData } = useContentData();
-    const { CREDITS } = contentData;
+function CreditsContent() {
+    const { CREDITS } = useContentData();
 
     return (
         <>
@@ -17,10 +17,16 @@ function CreditsPage() {
     );
 }
 
-export default function CreditsScreen() {
+export default function CreditsScreen({ navigation }) {
+    const { INFO_PAGES } = useAppData();
+
     return (
         <View style={styles.container}>
-            <Page title='Credits' PageContent={CreditsPage} />
+            <InfoScreensLayout
+                title={INFO_PAGES.CREDITS}
+                ScreenContent={CreditsContent}
+                navigation={navigation}
+            />
         </View>
     );
 }
