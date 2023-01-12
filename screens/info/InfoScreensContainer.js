@@ -12,7 +12,7 @@ import CreditsScreen from "./CreditsScreen";
 
 const Stack = createNativeStackNavigator();
 
-export default function MainContainer() {
+export default function InfoScreensContainer() {
     const { PAGES, INFO_PAGES } = useAppData();
 
     return (

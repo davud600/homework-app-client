@@ -17,6 +17,11 @@ const INFO_PAGES = {
     CREDITS: "Credits"
 };
 
+const TASKS_PAGES = {
+    TASKS_PART_ONE: "Task part 1",
+    TASKS_PART_TWO: "Task part 2"
+};
+
 export const AppDataContext = React.createContext();
 
 export function useAppData() {
@@ -27,7 +32,8 @@ export default function AppDataProvider({ children }) {
     const appData = {
         PAGES,
         INFO_PAGES,
-        BACKGROUND_COLOR
+        BACKGROUND_COLOR,
+        TASKS_PAGES
     };
 
     return (

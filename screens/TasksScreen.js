@@ -4,35 +4,47 @@ import { useAppData } from "../context/AppData";
 import { useContentData } from "../context/ContentData";
 import ScreenLayout from "./ScreenLayout";
 
-function TaskPart({ taskPart }) {
+function TasksPart({ tasksPart, navigation }) {
+    const { TASKS_PAGES } = useAppData();
+
     return (
-        <TouchableOpacity style={styles.partContainer}>
-            <Text style={styles.partTitle}>{taskPart.title}</Text>
-            <Text style={styles.partDescription}>{taskPart.description}</Text>
+        <TouchableOpacity
+            style={styles.partContainer}
+            onPress={() => navigation.navigate(TASKS_PAGES.TASKS_PART_ONE)}>
+            <Text style={styles.partTitle}>{tasksPart.title}</Text>
+            <Text style={styles.partDescription}>{tasksPart.description}</Text>
         </TouchableOpacity>
     );
 }
 
-function TasksContent() {
+function TasksContent({ navigation }) {
     const { TASK_PARTS } = useContentData();
 
     return (
         <>
             <View style={styles.partsContainer}>
-                {TASK_PARTS.map(taskPart => (
-                    <TaskPart key={taskPart.title} taskPart={taskPart} />
+                {TASK_PARTS.map(tasksPart => (
+                    <TasksPart
+                        key={tasksPart.title}
+                        tasksPart={tasksPart}
+                        navigation={navigation}
+                    />
                 ))}
             </View>
         </>
     );
 }
 
-export default function TasksScreen() {
+export default function TasksScreen({ navigation }) {
     const { PAGES } = useAppData();
 
     return (
         <View style={styles.container}>
-            <ScreenLayout title={PAGES.TASKS} ScreenContent={TasksContent} />
+            <ScreenLayout
+                title={PAGES.TASKS}
+                ScreenContent={TasksContent}
+                navigation={navigation}
+            />
         </View>
     );
 }
