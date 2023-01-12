@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     },
     creditContainer: {
         width: "80%",
+        marginTop: 50,
         paddingTop: 30,
         paddingBottom: 30,
         justifyContent: "start"

@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     glossaryList: {
-        marginTop: 10,
+        marginTop: 50,
         minWidth: "80%"
     },
     glossaryItem: {

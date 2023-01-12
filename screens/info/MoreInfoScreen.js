@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from "react-native";
-import Page from "../../components/Page";
 import { useAppData } from "../../context/AppData";
 import InfoScreensLayout from "./InfoScreensLayout";
 
